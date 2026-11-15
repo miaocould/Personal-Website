@@ -1,0 +1,1212 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="color-scheme" content="light dark" />
+<link rel="icon" href="data:," />
+<title>猫的小窝 · 个人主页</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fff8f0;
+    --bg-warm:#ffedd5;
+    --card:#ffffff;
+    --ink:#2d2119;
+    --ink-2:#6f5f52;
+    --ink-3:#a08b7a;
+    --line:#f3ddc6;
+    --accent:#e86a2c;
+    --accent-dark:#c4531a;
+    --accent-soft:#fff0df;
+    --yellow:#ffc94d;
+    --sage:#7a9e7e;
+    --chip:#fff3e6;
+    --shadow:0 8px 24px rgba(180,110,40,.10);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#1f1a16;
+      --bg-warm:#2a211a;
+      --card:#2a2320;
+      --ink:#fdf0e2;
+      --ink-2:#cbb8a6;
+      --ink-3:#9a8776;
+      --line:#3d322a;
+      --accent:#ff9a5c;
+      --accent-dark:#ffb088;
+      --accent-soft:#33251c;
+      --yellow:#ffcf6b;
+      --sage:#9abf9e;
+      --chip:#332a23;
+      --shadow:0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Noto Sans SC", system-ui, -apple-system, "PingFang SC","Microsoft YaHei", sans-serif;
+    line-height:1.75;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(var(--line) 1px, transparent 1px);
+    background-size:22px 22px;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px 48px}
+
+  /* header - not a navbar, more like a little sign */
+  .topbar{
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:18px 0 6px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:16px}
+  .brand-mark{
+    width:38px;height:38px;background:var(--yellow);color:#5c3a00;
+    border-radius:14px 14px 14px 4px;display:grid;place-items:center;font-size:19px;
+    transform:rotate(-6deg);border:2px solid var(--ink);
+    box-shadow:2px 2px 0 var(--ink);
+  }
+  .brand small{display:block;font-weight:500;font-size:11px;color:var(--ink-3);letter-spacing:.04em;line-height:1.2}
+  .nav{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+  .nav a{
+    font-size:14px;font-weight:600;color:var(--ink-2);
+    padding:8px 13px;min-height:38px;display:inline-flex;align-items:center;
+    background:var(--card);border:1.5px solid var(--line);border-radius:999px;
+  }
+  .nav a:hover{border-color:var(--accent);color:var(--accent-dark);transform:translateY(-1px)}
+
+  /* hero - loose, handwritten-note feeling */
+  .hero{padding:28px 0 8px;position:relative}
+  .hero-row{display:flex;gap:18px;align-items:flex-start}
+  .avatar-wrap{flex-shrink:0;position:relative;padding-top:6px}
+  .avatar{
+    width:92px;height:92px;border-radius:50%;background:var(--accent);color:#fff;
+    display:grid;place-items:center;font-size:44px;font-weight:900;cursor:pointer;
+    border:3px solid var(--card);box-shadow:var(--shadow), 0 0 0 2px var(--line);
+    transition:transform .18s ease;
+  }
+  .avatar:hover{transform:rotate(-4deg) scale(1.03)}
+  .avatar:active{transform:scale(.95)}
+  .hero-text{flex:1;min-width:0;padding-top:4px}
+  .greeting{margin:0;font-size:14px;color:var(--accent-dark);font-weight:700}
+  .hero h1{
+    margin:6px 0 0;font-size:clamp(38px,8vw,56px);line-height:1.05;font-weight:900;letter-spacing:-.03em;
+  }
+  .hero h1 em{
+    font-style:normal;position:relative;white-space:nowrap;
+  }
+  .hero h1 em::after{
+    content:"";position:absolute;left:0;right:0;bottom:2px;height:10px;background:var(--yellow);opacity:.55;z-index:-1;border-radius:999px;
+  }
+  .lead{margin:16px 0 0;font-size:16.5px;line-height:1.85;color:var(--ink-2);max-width:580px}
+  .lead strong{color:var(--ink);background:linear-gradient(transparent 62%, var(--bg-warm) 62%)}
+  .hero-meta{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+  .pill{
+    font-size:13px;padding:6px 11px;border-radius:999px;background:var(--chip);color:var(--ink-2);
+    display:inline-flex;align-items:center;gap:6px;border:1px dashed #e9c9a8;
+  }
+  @media (prefers-color-scheme: dark){ .pill{border-color:var(--line)} }
+  .pill i{width:7px;height:7px;border-radius:50%;background:#4ade80;display:inline-block}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:999px;
+    font-size:15px;font-weight:700;cursor:pointer;border:2px solid var(--ink);
+  }
+  .btn-primary{background:var(--ink);color:var(--bg);box-shadow:3px 3px 0 rgba(0,0,0,.12)}
+  .btn-news{background:var(--yellow);color:#4a2f00}
+  .btn-ghost{background:var(--card);color:var(--ink)}
+  .btn:hover{transform:translateY(-1px)}
+  .meow-note{margin:12px 0 0;font-size:13.5px;color:var(--accent-dark);min-height:22px;font-weight:600}
+
+  /* now board - clock + weather snapshot */
+  .now-board{
+    margin-top:26px;background:var(--card);border:2px solid var(--ink);border-radius:22px;
+    padding:18px;box-shadow:5px 5px 0 var(--bg-warm), 5px 5px 0 2px var(--ink);
+    display:grid;grid-template-columns:1fr;gap:18px;scroll-margin-top:20px;
+  }
+  @media(min-width:640px){.now-board{grid-template-columns:1.05fr .95fr}}
+  .now-label{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--accent-dark);margin:0 0 6px}
+  .clock-time{
+    font-size:clamp(40px,9vw,52px);line-height:1;font-weight:900;letter-spacing:-.03em;
+    font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+  }
+  .clock-time small{font-size:.45em;font-weight:800;color:var(--ink-3);letter-spacing:0}
+  .clock-date{margin:8px 0 0;font-size:14.5px;color:var(--ink-2);font-weight:600}
+  .weather-head{display:flex;align-items:flex-start;gap:14px}
+  .weather-icon{
+    width:56px;height:56px;flex-shrink:0;background:var(--bg-warm);border:1.5px solid var(--line);
+    border-radius:16px;display:grid;place-items:center;font-size:30px;transform:rotate(-3deg);
+  }
+  .weather-temp{font-size:36px;line-height:1;font-weight:900;letter-spacing:-.02em}
+  .weather-temp sup{font-size:18px;top:-.4em}
+  .weather-cond{margin:4px 0 0;font-size:14px;font-weight:700}
+  .weather-loc{margin:2px 0 0;font-size:12.5px;color:var(--ink-3)}
+  .weather-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-top:14px;font-size:13.5px}
+  .weather-grid div{background:var(--chip);border-radius:10px;padding:8px 10px}
+  .weather-grid span{display:block;font-size:11.5px;color:var(--ink-3);font-weight:700}
+  .weather-grid b{font-weight:800;color:var(--ink)}
+  .weather-tomorrow{margin-top:12px;font-size:13.5px;color:var(--ink-2);background:var(--accent-soft);border-radius:10px;padding:9px 11px}
+  .weather-src{margin-top:10px;font-size:12px;color:var(--ink-3);line-height:1.6}
+  .weather-src a{color:var(--accent-dark);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+  .region-open{
+    display:flex;align-items:center;gap:10px;width:100%;margin:0 0 14px;
+    font:inherit;font-size:14.5px;font-weight:800;color:var(--ink);cursor:pointer;text-align:left;
+    background:var(--chip);border:1.5px solid var(--line);border-radius:14px;padding:11px 13px;min-height:48px;
+  }
+  .region-open:hover{border-color:var(--accent)}
+  .region-open .ro-pin{font-size:17px;line-height:1}
+  .region-open .ro-cur{flex:1;min-width:0}
+  .region-open .ro-go{
+    font-size:12.5px;font-weight:800;color:var(--accent-dark);background:var(--card);
+    border:1.5px solid var(--line);border-radius:999px;padding:5px 10px;white-space:nowrap;
+  }
+
+  /* region drawer */
+  .drawer-backdrop{
+    position:fixed;inset:0;background:rgba(45,30,15,.45);z-index:60;
+    opacity:0;pointer-events:none;transition:opacity .25s ease;
+  }
+  .drawer{
+    position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(360px,88vw);
+    background:var(--bg);border-left:2px solid var(--ink);
+    transform:translateX(105%);transition:transform .3s ease;
+    display:flex;flex-direction:column;
+    box-shadow:-12px 0 32px rgba(60,35,10,.18);
+  }
+  body.drawer-open .drawer-backdrop{opacity:1;pointer-events:auto}
+  body.drawer-open .drawer{transform:translateX(0)}
+  body.drawer-open{overflow:hidden}
+  @media (prefers-reduced-motion: reduce){
+    .drawer,.drawer-backdrop{transition:none}
+  }
+  .drawer-head{
+    display:flex;align-items:center;gap:10px;padding:18px 18px 12px;
+    border-bottom:1.5px dashed var(--line);
+  }
+  .drawer-head h2{margin:0;font-size:19px;font-weight:900}
+  .drawer-close{
+    margin-left:auto;flex-shrink:0;width:38px;height:38px;border-radius:50%;cursor:pointer;
+    font:inherit;font-size:17px;font-weight:800;color:var(--ink);
+    background:var(--card);border:1.5px solid var(--line);display:grid;place-items:center;
+  }
+  .drawer-close:hover{border-color:var(--accent);color:var(--accent-dark)}
+  .drawer-body{overflow-y:auto;padding:14px 18px 22px;flex:1}
+  .drawer-group{margin:0 0 8px;font-size:13px;font-weight:900;letter-spacing:.04em;color:var(--accent-dark)}
+  .drawer-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+  .drawer-city{
+    font:inherit;font-size:14.5px;font-weight:700;color:var(--ink);cursor:pointer;text-align:left;
+    background:var(--card);border:1.5px solid var(--line);border-radius:12px;
+    padding:10px 12px;min-height:44px;display:flex;align-items:center;gap:6px;
+  }
+  .drawer-city:hover{border-color:var(--accent)}
+  .drawer-city[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .drawer-city .dc-now{font-size:11px;font-weight:800;color:var(--yellow)}
+  .drawer-search{
+    width:100%;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);
+    border:1.5px solid var(--line);border-radius:12px;padding:11px 13px;margin-bottom:16px;line-height:1.5;
+  }
+  .drawer-search:focus{outline:2px solid var(--yellow);outline-offset:1px;border-color:var(--accent)}
+  .drawer-subgroup{margin:14px 0 8px;font-size:12.5px;font-weight:800;color:var(--ink-2)}
+  .drawer-subgroup:first-of-type{margin-top:2px}
+  .drawer-link-chip{
+    font-size:14.5px;font-weight:700;color:var(--ink);text-align:left;
+    background:var(--card);border:1.5px solid var(--line);border-radius:12px;
+    padding:10px 12px;min-height:44px;display:flex;align-items:center;gap:6px;
+  }
+  .drawer-link-chip:hover{border-color:var(--accent);color:var(--accent-dark)}
+  .drawer-link-chip .lc-prov{font-size:11.5px;font-weight:600;color:var(--ink-3)}
+  .drawer-link-chip .lc-go{margin-left:auto;font-size:12px;color:var(--ink-3);flex-shrink:0}
+  .city-empty{
+    display:none;border:1.5px dashed var(--line);border-radius:12px;padding:14px;
+    text-align:center;color:var(--ink-3);font-size:13.5px;margin-bottom:16px;background:var(--card);
+  }
+  .drawer-links{display:flex;flex-direction:column;margin-bottom:6px}
+  .drawer-link{
+    display:flex;align-items:center;gap:10px;padding:11px 4px;border-bottom:1px dashed var(--line);
+  }
+  .drawer-link:last-child{border-bottom:none}
+  .drawer-link:hover .dl-name{color:var(--accent-dark);text-decoration:underline;text-underline-offset:3px}
+  .dl-main{flex:1;min-width:0;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .dl-name{font-size:15.5px;font-weight:800;white-space:nowrap}
+  .dl-sub{font-size:12.5px;color:var(--ink-3)}
+  .dl-go{font-size:12.5px;color:var(--ink-3);flex-shrink:0}
+  @media(max-width:560px){.weather-grid{grid-template-columns:1fr 1fr}}
+
+  /* casual section titles */
+  .section{padding:34px 0 4px;scroll-margin-top:20px}
+  .section-head{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+  .section-head h2{margin:0;font-size:21px;font-weight:900;letter-spacing:-.01em}
+  .section-head .sticker{
+    font-size:12px;font-weight:700;background:var(--accent-soft);color:var(--accent-dark);
+    padding:4px 9px;border-radius:999px;transform:rotate(-2deg);display:inline-block;
+  }
+  .section p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.85}
+  .section p + p{margin-top:10px}
+
+  /* news - a bookmark shelf, not a newsroom */
+  .news-spot{
+    margin-top:30px;background:var(--card);border:2px solid var(--ink);border-radius:22px;
+    padding:20px 18px 16px;box-shadow:5px 5px 0 var(--bg-warm), 5px 5px 0 2px var(--ink);
+    scroll-margin-top:20px;
+  }
+  .news-spot .section-head{margin-bottom:6px}
+  .news-spot .section-head h2{font-size:22px}
+  .news-date{
+    margin-left:auto;font-size:12.5px;font-weight:700;color:var(--ink-2);background:var(--chip);
+    padding:5px 10px;border-radius:999px;
+  }
+  .news-intro{font-size:14.5px !important;color:var(--ink-2) !important;margin-bottom:14px !important}
+  .news-list{display:flex;flex-direction:column;gap:8px}
+  .news-item{
+    display:flex;align-items:center;gap:12px;padding:12px 6px;border-bottom:1px dashed var(--line);
+  }
+  .news-item:last-child{border-bottom:none}
+  .news-item:hover .news-name{color:var(--accent-dark);text-decoration:underline;text-underline-offset:3px}
+  .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  .dot-1{background:#ff8a5c}.dot-2{background:#ffc94d}.dot-3{background:#7a9e7e}.dot-4{background:#7ab5d6}.dot-5{background:#c49ae0}.dot-6{background:#ff9db1}
+  .news-item-main{flex:1;min-width:0;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .news-name{font-size:16px;font-weight:800;white-space:nowrap}
+  .news-desc{font-size:13.5px;color:var(--ink-3)}
+  .news-go{font-size:13px;color:var(--ink-3);flex-shrink:0}
+
+  /* three little notes, not formal cards */
+  .grid{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:600px){.grid{grid-template-columns:1fr 1fr 1fr}}
+  .note-card{
+    background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:18px;
+    position:relative;
+  }
+  .note-card:nth-child(1){transform:rotate(-.6deg)}
+  .note-card:nth-child(2){transform:rotate(.5deg)}
+  .note-card:nth-child(3){transform:rotate(-.4deg)}
+  .note-card .label{
+    display:inline-block;font-size:12px;font-weight:800;letter-spacing:.02em;
+    padding:4px 8px;border-radius:6px;margin-bottom:10px;
+  }
+  .label-a{background:#fff0df;color:#9a4a12}
+  .label-b{background:#eef6ee;color:#3f6b43}
+  .label-c{background:#fdf0f4;color:#8c3a5a}
+  @media (prefers-color-scheme: dark){
+    .label-a{background:#3a2a1a;color:#ffb088}.label-b{background:#243528;color:#9abf9e}.label-c{background:#38222c;color:#ff9db1}
+  }
+  .note-card h3{margin:0 0 6px;font-size:15.5px;font-weight:800}
+  .note-card p{font-size:14px !important;line-height:1.7 !important}
+
+  .quote{
+    background:var(--bg-warm);border-radius:18px;padding:22px 20px;transform:rotate(-.5deg);
+    border:1.5px dashed #e5b87a;
+  }
+  @media (prefers-color-scheme: dark){ .quote{border-color:var(--line)} }
+  .quote p{margin:0;font-size:19px;line-height:1.65;font-weight:800;color:var(--ink) !important}
+  .quote footer{margin-top:8px;font-size:13px;color:var(--ink-3)}
+
+  /* guestbook */
+  .gb-panel{
+    background:var(--card);border:2px solid var(--ink);border-radius:22px;
+    padding:20px 18px 18px;box-shadow:5px 5px 0 var(--bg-warm), 5px 5px 0 2px var(--ink);
+  }
+  .gb-panel .section-head{margin-bottom:6px}
+  .gb-head-count{
+    margin-left:auto;font-size:12.5px;font-weight:800;color:var(--ink-2);background:var(--chip);
+    padding:5px 11px;border-radius:999px;white-space:nowrap;
+  }
+  .gb-intro{font-size:14.5px !important;margin-bottom:16px !important}
+  .gb-form{background:var(--bg);border:1.5px dashed #e9c9a8;border-radius:16px;padding:16px}
+  @media (prefers-color-scheme: dark){ .gb-form{border-color:var(--line)} }
+  .gb-form label{display:block;font-size:13px;font-weight:800;margin:0 0 6px}
+  .gb-input,.gb-textarea{
+    width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--card);
+    border:1.5px solid var(--line);border-radius:12px;padding:11px 12px;line-height:1.6;
+  }
+  .gb-input:focus,.gb-textarea:focus{outline:2px solid var(--yellow);outline-offset:1px;border-color:var(--accent)}
+  .gb-textarea{min-height:96px;resize:vertical;margin-top:2px}
+  .gb-row{margin-top:14px}
+  .gb-moods{display:flex;flex-wrap:wrap;gap:7px;margin-top:2px}
+  .gb-mood{
+    font:inherit;font-size:13px;font-weight:700;color:var(--ink-2);cursor:pointer;
+    background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:6px 11px;min-height:36px;
+  }
+  .gb-mood:hover{border-color:var(--accent)}
+  .gb-mood[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+  .gb-meter-row{display:flex;align-items:center;gap:10px;margin-top:8px}
+  .gb-meter{flex:1;height:6px;background:var(--chip);border-radius:999px;overflow:hidden}
+  .gb-meter i{display:block;height:100%;width:0;background:var(--sage);border-radius:999px;transition:width .15s ease}
+  .gb-meter i.hot{background:#e05252}
+  .gb-char{font-size:12.5px;color:var(--ink-3);font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .gb-char.hot{color:#b42318}
+  @media (prefers-color-scheme: dark){.gb-char.hot{color:#ff9a8a}}
+  .gb-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:14px}
+  .gb-posted{font-size:13.5px;color:var(--sage);font-weight:800;min-height:20px}
+  .gb-scope{font-size:12.5px;color:var(--ink-3);flex:1;min-width:180px;line-height:1.5}
+  .gb-error{margin:10px 0 0;font-size:13.5px;color:#b42318;font-weight:700;min-height:20px}
+  @media (prefers-color-scheme: dark){.gb-error{color:#ff9a8a}}
+  .gb-tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:16px}
+  .gb-tool{
+    font:inherit;font-size:13px;font-weight:700;color:var(--ink-2);cursor:pointer;
+    background:var(--card);border:1.5px solid var(--line);border-radius:999px;padding:7px 13px;min-height:38px;
+    display:inline-flex;align-items:center;gap:5px;
+  }
+  .gb-tool:hover{border-color:var(--accent);color:var(--accent-dark)}
+  .gb-tool.danger[aria-pressed="true"]{background:#b42318;border-color:#b42318;color:#fff}
+  .gb-copy-note{font-size:13px;color:var(--sage);font-weight:700;min-height:20px;flex-basis:100%}
+  .gb-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+  .gb-empty{
+    border:1.5px dashed var(--line);border-radius:14px;padding:26px 18px;text-align:center;
+    color:var(--ink-3);font-size:14.5px;background:var(--bg);cursor:pointer;width:100%;font:inherit;
+  }
+  .gb-empty .ge-paw{font-size:30px;display:block;margin-bottom:6px}
+  .gb-empty strong{color:var(--ink-2);display:block;font-size:15.5px;margin-bottom:2px}
+  .gb-item{
+    background:var(--bg);border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .gb-item:nth-child(odd){transform:rotate(-.25deg)}
+  .gb-item:nth-child(even){transform:rotate(.25deg)}
+  .gb-avatar{
+    width:40px;height:40px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;
+    font-size:17px;font-weight:900;color:#4a2f00;border:2px solid var(--card);
+    box-shadow:0 0 0 1.5px var(--line);
+  }
+  .gb-main{flex:1;min-width:0}
+  .gb-item-head{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+  .gb-name{font-weight:900;font-size:15px}
+  .gb-mood-tag{
+    font-size:11.5px;font-weight:700;background:var(--accent-soft);color:var(--accent-dark);
+    padding:2px 8px;border-radius:999px;
+  }
+  .gb-time{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;margin-left:auto}
+  .gb-text{margin:5px 0 0;font-size:15px !important;line-height:1.7 !important;color:var(--ink) !important;white-space:pre-wrap;word-break:break-word}
+  .gb-item-actions{display:flex;flex-wrap:wrap;gap:4px;align-items:center;margin-top:8px}
+  .gb-act{
+    font:inherit;font-size:12.5px;font-weight:700;color:var(--ink-3);cursor:pointer;
+    background:none;border:none;padding:5px 8px;border-radius:999px;min-height:32px;
+    display:inline-flex;align-items:center;gap:4px;
+  }
+  .gb-act:hover{background:var(--chip);color:var(--ink)}
+  .gb-act.liked{color:#d64560}
+  .gb-act.confirm{color:#fff;background:#b42318}
+  .gb-act.confirm:hover{background:#b42318;color:#fff}
+  @keyframes gbIn{from{opacity:0;transform:translateY(8px) rotate(0)}to{opacity:1}}
+  .gb-item.gb-new{animation:gbIn .35s ease}
+  @media (prefers-reduced-motion: reduce){ .gb-item.gb-new{animation:none} .gb-meter i{transition:none} }
+
+  .contact-box{
+    background:var(--card);border:1.5px solid var(--line);border-radius:18px;padding:20px;
+    display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between;
+  }
+  .contact-box h3{margin:0 0 4px;font-size:16px;font-weight:800}
+  .contact-box p{margin:0;font-size:14px;color:var(--ink-2)}
+  footer.page{
+    margin-top:40px;padding-top:18px;display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;
+    font-size:13px;color:var(--ink-3);
+  }
+  @media(max-width:560px){
+    .hero-row{flex-direction:column}
+    .avatar-wrap{margin-bottom:8px}
+    .news-item-main{gap:4px}
+    .news-desc{flex-basis:100%}
+    .contact-box{flex-direction:column;align-items:flex-start}
+    .contact-box .btn{width:100%}
+    .topbar{align-items:flex-start}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">🐾</span><span>猫的小窝<small>mao's little corner</small></span></div>
+    <nav class="nav" aria-label="页面导航">
+      <a href="#now">此刻</a>
+      <a href="#about">关于我</a>
+      <a href="#news">顺手看</a>
+      <a href="#guestbook">留言</a>
+      <a href="#contact">找我</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-row">
+      <div class="avatar-wrap">
+        <button class="avatar" id="avatarBtn" aria-label="猫的头像">猫</button>
+      </div>
+      <div class="hero-text">
+        <p class="greeting" id="greeting">你好呀</p>
+        <h1>嗨，我是<em>猫</em></h1>
+        <p class="lead">这里是我的网上小窝，没什么正经用途 —— 就是<strong>放放想法、记记日常</strong>，偶尔收藏点好玩的东西。随便逛，不用拘束，逛累了就坐一会儿。</p>
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <span class="pill"><i></i> 小窝刚搭好，还在慢慢布置</span>
+      <span class="pill" id="todayPill">今天</span>
+      <span class="pill">☕ 不赶时间，慢慢来</span>
+    </div>
+
+    <div class="hero-actions">
+      <a class="btn btn-news" href="#news">晨间顺手刷 ↓</a>
+      <a class="btn btn-primary" href="#about">认识一下我</a>
+      <a class="btn btn-ghost" href="#contact">打个招呼</a>
+    </div>
+    <p class="meow-note" id="meowNote" aria-live="polite"></p>
+  </section>
+
+  <section class="now-board" id="now" aria-label="现在的时间和天气">
+    <div>
+      <p class="now-label">🕐 现在几点</p>
+      <div class="clock-time"><span id="clockTime">--:--</span><small id="clockSec"> :--</small></div>
+      <p class="clock-date" id="clockDate">正在看时间…</p>
+    </div>
+    <div>
+      <p class="now-label">🌤️ 出门前瞅一眼</p>
+      <button type="button" class="region-open" id="regionOpen" aria-haspopup="dialog" aria-expanded="false" aria-controls="regionDrawer">
+        <span class="ro-pin" aria-hidden="true">📍</span>
+        <span class="ro-cur"><span id="regionCurName">北京</span></span>
+        <span class="ro-go">换地区 →</span>
+      </button>
+      <div class="weather-head">
+        <div class="weather-icon" id="wIcon" aria-hidden="true">☀️</div>
+        <div>
+          <div class="weather-temp"><span id="wTemp">11</span><sup>°C</sup></div>
+          <p class="weather-cond" id="wCond">晴</p>
+          <p class="weather-loc" id="wLoc">北京 · 今天有雾，最高 12°C / 最低 3°C</p>
+        </div>
+      </div>
+      <div class="weather-grid">
+        <div><span>湿度</span><b id="wHum">69%</b></div>
+        <div><span>风</span><b id="wWind">东北风 · 很轻</b></div>
+        <div><span>日出 / 日落</span><b id="wSun">06:57 / 16:59</b></div>
+        <div><span>降水概率</span><b id="wRain">0% · 不用带伞</b></div>
+      </div>
+      <p class="weather-tomorrow" id="wTomorrow"><b>明天（11月15日）：</b><span id="wTomorrowText">阴，12°C / 5°C，降水概率 0%。</span></p>
+      <p class="weather-src">天气快照 · 2026年11月14日 12:00 左右抓取，来源 Open-Meteo。逐小时预报：<a id="wLink" href="https://www.weather.com.cn/weather/101010100.shtml" target="_blank" rel="noopener noreferrer">中国天气网看北京</a></p>
+    </div>
+  </section>
+
+  <section class="news-spot" id="news">
+    <div class="section-head"><h2>起床后顺手刷一下</h2><span class="news-date" id="newsDate">今天</span></div>
+    <p class="news-intro">就是我自己早上会点开的几个站，顺手放在这里了。没啥顺序，想起哪个点哪个，花五分钟知道今天发生了啥就够了。</p>
+    <div class="news-list">
+      <a class="news-item" href="https://news.cctv.com/" target="_blank" rel="noopener noreferrer">
+        <span class="dot dot-1"></span>
+        <span class="news-item-main"><span class="news-name">央视新闻</span><span class="news-desc">想看视频和直播的时候点这个</span></span>
+        <span class="news-go">去看看 →</span>
+      </a>
+      <a class="news-item" href="https://www.news.cn/" target="_blank" rel="noopener noreferrer">
+        <span class="dot dot-2"></span>
+        <span class="news-item-main"><span class="news-name">新华网</span><span class="news-desc">更新很全，我一般拿它当总入口扫一眼</span></span>
+        <span class="news-go">去看看 →</span>
+      </a>
+      <a class="news-item" href="https://www.people.com.cn/" target="_blank" rel="noopener noreferrer">
+        <span class="dot dot-3"></span>
+        <span class="news-item-main"><span class="news-name">人民网</span><span class="news-desc">生活、民生类的内容多一点</span></span>
+        <span class="news-go">去看看 →</span>
+      </a>
+      <a class="news-item" href="https://www.chinanews.com.cn/" target="_blank" rel="noopener noreferrer">
+        <span class="dot dot-4"></span>
+        <span class="news-item-main"><span class="news-name">中国新闻网</span><span class="news-desc">快讯刷得快，碎片时间瞄两眼</span></span>
+        <span class="news-go">去看看 →</span>
+      </a>
+      <a class="news-item" href="https://www.thepaper.cn/" target="_blank" rel="noopener noreferrer">
+        <span class="dot dot-5"></span>
+        <span class="news-item-main"><span class="news-name">澎湃新闻</span><span class="news-desc">有热点想多了解一点的时候看</span></span>
+        <span class="news-go">去看看 →</span>
+      </a>
+      <a class="news-item" href="https://www.jiemian.com/" target="_blank" rel="noopener noreferrer">
+        <span class="dot dot-6"></span>
+        <span class="news-item-main"><span class="news-name">界面新闻</span><span class="news-desc">钱和公司方面的消息，扫个大概</span></span>
+        <span class="news-go">去看看 →</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="section-head"><h2>关于我</h2><span class="sticker">就是一只猫</span></div>
+    <p>叫“猫”是因为简单、好记，也有点像我：好奇心重，有自己的节奏，感兴趣就凑近看看，不感兴趣就安静走开，不勉强自己。</p>
+    <p>这个小窝才刚开始，不会一下子很热闹。以后想到什么就往里放一点 —— 一段话、一个小尝试、一个喜欢的链接，慢慢就长成我想要的样子了。它不是做给谁看的展示页，就是我自己愿意常回来待着的地方。</p>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>小窝里会放些啥</h2><span class="sticker">随缘更新</span></div>
+    <div class="grid">
+      <article class="note-card">
+        <span class="label label-a">碎碎念</span>
+        <h3>想法与日常</h3>
+        <p>随手记的念头、读到的一句好话、过日子的小片段。不求完整，记下来就行。</p>
+      </article>
+      <article class="note-card">
+        <span class="label label-b">瞎折腾</span>
+        <h3>作品与尝试</h3>
+        <p>做过的小东西、折腾过的工具，踩过的坑和最后怎么弄好的，都丢在这里备忘。</p>
+      </article>
+      <article class="note-card">
+        <span class="label label-c">我的收藏夹</span>
+        <h3>喜欢的东西</h3>
+        <p>值得反复看的文章和网站。慢慢攒着，以后就是一份我自己的小清单。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="quote">
+      <p>“保持好奇，慢慢来。<br>把小日子过成自己喜欢的样子。”</p>
+      <footer>—— 贴在小窝墙上的一句话</footer>
+    </div>
+  </section>
+
+  <section class="section" id="guestbook">
+    <div class="gb-panel">
+      <div class="section-head"><h2>留言板</h2><span class="sticker">来都来了，写一句</span><span class="gb-head-count" id="gbTotal">0 条留言</span></div>
+      <p class="gb-intro">路过、打招呼、想到啥就写啥，不用长篇大论，一句话也行。写完会直接贴在下面。</p>
+
+      <form class="gb-form" id="gbForm" novalidate>
+        <label for="gbName">你叫啥</label>
+        <input class="gb-input" id="gbName" type="text" maxlength="20" autocomplete="off">
+        <div class="gb-row">
+          <label id="gbMoodLabel">顺手选张贴纸</label>
+          <div class="gb-moods" role="group" aria-labelledby="gbMoodLabel" id="gbMoods">
+            <button type="button" class="gb-mood" data-mood="☀️ 心情不错" aria-pressed="false">☀️ 心情不错</button>
+            <button type="button" class="gb-mood" data-mood="☕ 慢慢聊" aria-pressed="false">☕ 慢慢聊</button>
+            <button type="button" class="gb-mood" data-mood="🐾 路过打卡" aria-pressed="false">🐾 路过打卡</button>
+            <button type="button" class="gb-mood" data-mood="🌙 夜猫子" aria-pressed="false">🌙 夜猫子</button>
+            <button type="button" class="gb-mood" data-mood="✨ 被鼓舞到了" aria-pressed="false">✨ 被鼓舞到了</button>
+          </div>
+        </div>
+        <div class="gb-row">
+          <label for="gbText">想说的话</label>
+          <textarea class="gb-textarea" id="gbText" maxlength="200"></textarea>
+          <div class="gb-meter-row">
+            <span class="gb-meter" aria-hidden="true"><i id="gbMeterFill"></i></span>
+            <span class="gb-char" id="gbCount">0 / 200</span>
+          </div>
+        </div>
+        <p class="gb-error" id="gbError" aria-live="polite"></p>
+        <div class="gb-actions">
+          <button class="btn btn-primary" type="submit">贴到留言板上</button>
+          <span class="gb-posted" id="gbPosted" aria-live="polite"></span>
+          <span class="gb-scope">刷新就清空，想留住点下面的「复制全部」。</span>
+        </div>
+      </form>
+
+      <div class="gb-tools">
+        <button class="gb-tool" type="button" id="gbSort" aria-pressed="false">⇅ 最新在前</button>
+        <button class="gb-tool" type="button" id="gbCopy">复制全部</button>
+        <button class="gb-tool danger" type="button" id="gbClear" aria-pressed="false">清空全部</button>
+        <span class="gb-copy-note" id="gbCopyNote" aria-live="polite"></span>
+      </div>
+      <div class="gb-list" id="gbList">
+        <button type="button" class="gb-empty" id="gbEmpty"><span class="ge-paw" aria-hidden="true">🐾</span><strong>还没人留言</strong>你来贴第一张吧，点这里就开始写。</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="section-head"><h2>想找我？</h2><span class="sticker">也可以去留言板</span></div>
+    <div class="contact-box">
+      <div>
+        <h3>先在这儿逛逛吧</h3>
+        <p>邮箱还在弄，弄好了就贴在这里。<br>不急，反正小窝一直开着。</p>
+      </div>
+      <a class="btn btn-primary" href="#about">先看看关于我</a>
+    </div>
+  </section>
+
+  <footer class="page">
+    <span>© 2026 猫的小窝 · 随便逛逛</span>
+    <span id="footerDate">慢慢布置中</span>
+  </footer>
+
+</div>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="regionDrawer" role="dialog" aria-modal="true" aria-labelledby="drawerTitle" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <h2 id="drawerTitle">切换地区</h2>
+    </div>
+    <button type="button" class="drawer-close" id="drawerClose" aria-label="关闭地区抽屉">✕</button>
+  </div>
+  <div class="drawer-body">
+    <input class="drawer-search" id="citySearch" type="search" aria-label="搜索城市">
+    <p class="city-empty" id="cityEmpty">没搜到这个城市，换个名字试试。</p>
+    <div class="drawer-section">
+    <p class="drawer-group">🇨🇳 中国 · 常用</p>
+    <div class="drawer-grid" id="drawerCities" role="group" aria-label="中国常用城市">
+      <button type="button" class="drawer-city" data-city="beijing" aria-pressed="true">北京</button>
+      <button type="button" class="drawer-city" data-city="shanghai" aria-pressed="false">上海</button>
+      <button type="button" class="drawer-city" data-city="guangzhou" aria-pressed="false">广州</button>
+      <button type="button" class="drawer-city" data-city="shenzhen" aria-pressed="false">深圳</button>
+      <button type="button" class="drawer-city" data-city="chengdu" aria-pressed="false">成都</button>
+      <button type="button" class="drawer-city" data-city="hangzhou" aria-pressed="false">杭州</button>
+      <button type="button" class="drawer-city" data-city="wuhan" aria-pressed="false">武汉</button>
+      <button type="button" class="drawer-city" data-city="xian" aria-pressed="false">西安</button>
+      <button type="button" class="drawer-city" data-city="haerbin" aria-pressed="false">哈尔滨</button>
+      <button type="button" class="drawer-city" data-city="wulumuqi" aria-pressed="false">乌鲁木齐</button>
+    </div>
+    </div>
+    <div class="drawer-section">
+    <p class="drawer-group">🇨🇳 中国 · 各省省会</p>
+    <p class="drawer-subgroup">华北</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101030100.shtml" target="_blank" rel="noopener noreferrer">天津<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101090101.shtml" target="_blank" rel="noopener noreferrer">石家庄<span class="lc-prov">河北</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101100101.shtml" target="_blank" rel="noopener noreferrer">太原<span class="lc-prov">山西</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101080101.shtml" target="_blank" rel="noopener noreferrer">呼和浩特<span class="lc-prov">内蒙古</span><span class="lc-go">↗</span></a>
+    </div>
+    <p class="drawer-subgroup">东北</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101070101.shtml" target="_blank" rel="noopener noreferrer">沈阳<span class="lc-prov">辽宁</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101060101.shtml" target="_blank" rel="noopener noreferrer">长春<span class="lc-prov">吉林</span><span class="lc-go">↗</span></a>
+    </div>
+    <p class="drawer-subgroup">华东</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101190101.shtml" target="_blank" rel="noopener noreferrer">南京<span class="lc-prov">江苏</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101220101.shtml" target="_blank" rel="noopener noreferrer">合肥<span class="lc-prov">安徽</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101230101.shtml" target="_blank" rel="noopener noreferrer">福州<span class="lc-prov">福建</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101240101.shtml" target="_blank" rel="noopener noreferrer">南昌<span class="lc-prov">江西</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101120101.shtml" target="_blank" rel="noopener noreferrer">济南<span class="lc-prov">山东</span><span class="lc-go">↗</span></a>
+    </div>
+    <p class="drawer-subgroup">华中 · 华南</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101180101.shtml" target="_blank" rel="noopener noreferrer">郑州<span class="lc-prov">河南</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101250101.shtml" target="_blank" rel="noopener noreferrer">长沙<span class="lc-prov">湖南</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101300101.shtml" target="_blank" rel="noopener noreferrer">南宁<span class="lc-prov">广西</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101310101.shtml" target="_blank" rel="noopener noreferrer">海口<span class="lc-prov">海南</span><span class="lc-go">↗</span></a>
+    </div>
+    <p class="drawer-subgroup">西南</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101040100.shtml" target="_blank" rel="noopener noreferrer">重庆<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101260101.shtml" target="_blank" rel="noopener noreferrer">贵阳<span class="lc-prov">贵州</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101290101.shtml" target="_blank" rel="noopener noreferrer">昆明<span class="lc-prov">云南</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101140101.shtml" target="_blank" rel="noopener noreferrer">拉萨<span class="lc-prov">西藏</span><span class="lc-go">↗</span></a>
+    </div>
+    <p class="drawer-subgroup">西北</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101160101.shtml" target="_blank" rel="noopener noreferrer">兰州<span class="lc-prov">甘肃</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101150101.shtml" target="_blank" rel="noopener noreferrer">西宁<span class="lc-prov">青海</span><span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101170101.shtml" target="_blank" rel="noopener noreferrer">银川<span class="lc-prov">宁夏</span><span class="lc-go">↗</span></a>
+    </div>
+    <p class="drawer-subgroup">港澳台</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101320101.shtml" target="_blank" rel="noopener noreferrer">香港<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101330101.shtml" target="_blank" rel="noopener noreferrer">澳门<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.weather.com.cn/weather/101340101.shtml" target="_blank" rel="noopener noreferrer">台北<span class="lc-prov">台湾</span><span class="lc-go">↗</span></a>
+    </div>
+    </div>
+    <div class="drawer-section">
+    <p class="drawer-group">🇨🇳 中国 · 热门城市</p>
+    <div class="drawer-grid">
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/dalian" target="_blank" rel="noopener noreferrer">大连<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/qingdao" target="_blank" rel="noopener noreferrer">青岛<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/xiamen" target="_blank" rel="noopener noreferrer">厦门<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/suzhou" target="_blank" rel="noopener noreferrer">苏州<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/ningbo" target="_blank" rel="noopener noreferrer">宁波<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/wuxi" target="_blank" rel="noopener noreferrer">无锡<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/dongguan" target="_blank" rel="noopener noreferrer">东莞<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/foshan" target="_blank" rel="noopener noreferrer">佛山<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/zhuhai" target="_blank" rel="noopener noreferrer">珠海<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/sanya" target="_blank" rel="noopener noreferrer">三亚<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/guilin" target="_blank" rel="noopener noreferrer">桂林<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/luoyang" target="_blank" rel="noopener noreferrer">洛阳<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/dali" target="_blank" rel="noopener noreferrer">大理<span class="lc-go">↗</span></a>
+      <a class="drawer-link-chip" href="https://www.timeanddate.com/weather/china/lijiang" target="_blank" rel="noopener noreferrer">丽江<span class="lc-go">↗</span></a>
+    </div>
+    </div>
+    <div class="drawer-section">
+    <p class="drawer-group">🌍 海外</p>
+    <div class="drawer-links">
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/japan/tokyo" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">东京</span><span class="dl-sub">日本</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/south-korea/seoul" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">首尔</span><span class="dl-sub">韩国</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/singapore/singapore" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">新加坡</span><span class="dl-sub">新加坡</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/thailand/bangkok" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">曼谷</span><span class="dl-sub">泰国</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/united-arab-emirates/dubai" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">迪拜</span><span class="dl-sub">阿联酋</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/uk/london" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">伦敦</span><span class="dl-sub">英国</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/france/paris" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">巴黎</span><span class="dl-sub">法国</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/russia/moscow" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">莫斯科</span><span class="dl-sub">俄罗斯</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/usa/new-york" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">纽约</span><span class="dl-sub">美国</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/usa/los-angeles" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">洛杉矶</span><span class="dl-sub">美国</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/canada/vancouver" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">温哥华</span><span class="dl-sub">加拿大</span></span><span class="dl-go">去看看 →</span>
+      </a>
+      <a class="drawer-link" href="https://www.timeanddate.com/weather/australia/sydney" target="_blank" rel="noopener noreferrer">
+        <span class="dl-main"><span class="dl-name">悉尼</span><span class="dl-sub">澳大利亚</span></span><span class="dl-go">去看看 →</span>
+      </a>
+    </div>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function(){
+  var now = new Date();
+  var h = now.getHours();
+  var greet = "你好呀";
+  if(h >= 5 && h < 11) greet = "早上好呀 ☀";
+  else if(h >= 11 && h < 14) greet = "中午好，吃了吗";
+  else if(h >= 14 && h < 18) greet = "下午好，来杯茶吗";
+  else if(h >= 18 && h < 23) greet = "晚上好，欢迎来串门";
+  else greet = "夜深了，还没睡呀";
+  var gEl = document.getElementById('greeting');
+  if(gEl) gEl.textContent = greet;
+
+  var weekdays = ["周日","周一","周二","周三","周四","周五","周六"];
+  var dateStr = (now.getMonth()+1) + "月" + now.getDate() + "日 · " + weekdays[now.getDay()];
+  var pill = document.getElementById('todayPill');
+  if(pill) pill.textContent = "今天是 " + dateStr;
+  var fd = document.getElementById('footerDate');
+  if(fd) fd.textContent = dateStr;
+  var nd = document.getElementById('newsDate');
+  if(nd) nd.textContent = dateStr;
+
+  var notes = [
+    "喵 —— 被你发现啦。",
+    "喵。今天也辛苦了，坐一会儿再走吧。",
+    "喵！小窝是我一点点布置的，还不错吧？",
+    "喵 —— 保持好奇，慢慢来。",
+    "喵呜，再点我要翻肚皮了。"
+  ];
+  var idx = 0;
+  var btn = document.getElementById('avatarBtn');
+  var note = document.getElementById('meowNote');
+  if(btn && note){
+    btn.addEventListener('click', function(){
+      note.textContent = notes[idx % notes.length];
+      idx++;
+    });
+  }
+
+  /* live clock */
+  function pad(n){ return (n < 10 ? "0" : "") + n; }
+  var clockTime = document.getElementById('clockTime');
+  var clockSec = document.getElementById('clockSec');
+  var clockDate = document.getElementById('clockDate');
+  function tick(){
+    var t = new Date();
+    if(clockTime) clockTime.textContent = pad(t.getHours()) + ":" + pad(t.getMinutes());
+    if(clockSec) clockSec.textContent = " :" + pad(t.getSeconds());
+    if(clockDate){
+      clockDate.textContent = t.getFullYear() + "年" + (t.getMonth()+1) + "月" + t.getDate() + "日 · " + weekdays[t.getDay()];
+    }
+    /* keep greeting in sync when the hour rolls over */
+    var hh2 = t.getHours();
+    var g2 = "你好呀";
+    if(hh2 >= 5 && hh2 < 11) g2 = "早上好呀 ☀";
+    else if(hh2 >= 11 && hh2 < 14) g2 = "中午好，吃了吗";
+    else if(hh2 >= 14 && hh2 < 18) g2 = "下午好，来杯茶吗";
+    else if(hh2 >= 18 && hh2 < 23) g2 = "晚上好，欢迎来串门";
+    else g2 = "夜深了，还没睡呀";
+    if(gEl && gEl.textContent !== g2) gEl.textContent = g2;
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  /* weather city switcher - baked snapshots, fetched 2026-11-14 ~12:00 CST from Open-Meteo */
+  var WEATHER = {
+    beijing:   { name:"北京", code:"101010100", icon:"☀️", temp:11, cond:"晴", today:"有雾", hi:12, lo:3, hum:"69%", wind:"东北风 · 很轻", sun:"06:57 / 16:59", rain:"0% · 不用带伞", tomorrow:"阴，12°C / 5°C，降水概率 0%。" },
+    shanghai:  { name:"上海", code:"101020100", icon:"☁️", temp:20, cond:"阴", today:"有阵雨", hi:21, lo:16, hum:"86%", wind:"北风 · 很轻", sun:"06:20 / 16:56", rain:"100% · 记得带伞", tomorrow:"毛毛雨，19°C / 14°C，降水概率 16%。" },
+    guangzhou: { name:"广州", code:"101280101", icon:"⛅", temp:26, cond:"多云", today:"有暴雨", hi:26, lo:19, hum:"67%", wind:"北西北风 · 轻风", sun:"06:39 / 17:42", rain:"100% · 记得带伞", tomorrow:"多云，27°C / 18°C，降水概率 2%。" },
+    shenzhen:  { name:"深圳", code:"101280601", icon:"☁️", temp:25, cond:"阴", today:"有雷阵雨", hi:26, lo:21, hum:"77%", wind:"北西北风 · 轻风", sun:"06:35 / 17:40", rain:"100% · 记得带伞", tomorrow:"毛毛雨，27°C / 19°C，降水概率 25%。" },
+    chengdu:   { name:"成都", code:"101270101", icon:"☁️", temp:16, cond:"阴", today:"有毛毛雨", hi:17, lo:11, hum:"74%", wind:"西西南风 · 几乎没风", sun:"07:28 / 18:07", rain:"32% · 带把伞更稳妥", tomorrow:"阴，17°C / 13°C，降水概率 25%。" },
+    hangzhou:  { name:"杭州", code:"101210101", icon:"☁️", temp:20, cond:"阴", today:"有阵雨", hi:20, lo:16, hum:"83%", wind:"西西北风 · 很轻", sun:"06:23 / 17:03", rain:"100% · 记得带伞", tomorrow:"阴，20°C / 15°C，降水概率 18%。" },
+    wuhan:     { name:"武汉", code:"101200101", icon:"☁️", temp:16, cond:"阴", today:"有毛毛雨", hi:17, lo:13, hum:"84%", wind:"东东北风 · 很轻", sun:"06:47 / 17:26", rain:"98% · 记得带伞", tomorrow:"阴，19°C / 13°C，降水概率 0%。" },
+    xian:      { name:"西安", code:"101110101", icon:"☀️", temp:13, cond:"晴", today:"阴", hi:16, lo:5, hum:"62%", wind:"北风 · 轻风", sun:"07:15 / 17:40", rain:"0% · 不用带伞", tomorrow:"毛毛雨，11°C / 7°C，降水概率 98%，记得带伞。" },
+    haerbin:   { name:"哈尔滨", code:"101050101", icon:"☁️", temp:3, cond:"阴", today:"阴", hi:4, lo:-5, hum:"45%", wind:"东北风 · 有点感觉", sun:"06:31 / 16:04", rain:"0% · 不用带伞", tomorrow:"阴，4°C / -5°C，降水概率 0%。" },
+    wulumuqi:  { name:"乌鲁木齐", code:"101130101", icon:"🌨️", temp:0, cond:"中雪", today:"有中雪", hi:3, lo:-2, hum:"99%", wind:"西北风 · 轻风", sun:"09:02 / 18:45", rain:"100% · 雪天路滑，慢点走", tomorrow:"多云，2°C / -4°C，降水概率 0%。" }
+  };
+  var wIcon = document.getElementById('wIcon');
+  var wTemp = document.getElementById('wTemp');
+  var wCond = document.getElementById('wCond');
+  var wLoc = document.getElementById('wLoc');
+  var wHum = document.getElementById('wHum');
+  var wWind = document.getElementById('wWind');
+  var wSun = document.getElementById('wSun');
+  var wRain = document.getElementById('wRain');
+  var wTomorrowText = document.getElementById('wTomorrowText');
+  var wLink = document.getElementById('wLink');
+  var regionCurName = document.getElementById('regionCurName');
+  var drawerCities = document.querySelectorAll('#drawerCities .drawer-city');
+  function setCity(key){
+    var d = WEATHER[key];
+    if(!d) return;
+    if(wIcon) wIcon.textContent = d.icon;
+    if(wTemp) wTemp.textContent = d.temp;
+    if(wCond) wCond.textContent = d.cond;
+    if(wLoc) wLoc.textContent = d.name + " · 今天" + d.today + "，最高 " + d.hi + "°C / 最低 " + d.lo + "°C";
+    if(wHum) wHum.textContent = d.hum;
+    if(wWind) wWind.textContent = d.wind;
+    if(wSun) wSun.textContent = d.sun;
+    if(wRain) wRain.textContent = d.rain;
+    if(wTomorrowText) wTomorrowText.textContent = d.tomorrow;
+    if(wLink){
+      wLink.href = "https://www.weather.com.cn/weather/" + d.code + ".shtml";
+      wLink.textContent = "中国天气网看" + d.name;
+    }
+    if(regionCurName) regionCurName.textContent = d.name;
+    for(var i = 0; i < drawerCities.length; i++){
+      var on = drawerCities[i].getAttribute('data-city') === key;
+      drawerCities[i].setAttribute('aria-pressed', on ? "true" : "false");
+      var tag = drawerCities[i].querySelector('.dc-now');
+      if(on && !tag){
+        tag = document.createElement('span');
+        tag.className = 'dc-now';
+        tag.textContent = '· 当前';
+        drawerCities[i].appendChild(tag);
+      } else if(!on && tag){
+        tag.remove();
+      }
+    }
+  }
+  for(var c = 0; c < drawerCities.length; c++){
+    drawerCities[c].addEventListener('click', function(){
+      setCity(this.getAttribute('data-city'));
+      closeDrawer();
+    });
+  }
+  setCity('beijing');
+
+  /* region drawer open / close */
+  var regionOpen = document.getElementById('regionOpen');
+  var regionDrawer = document.getElementById('regionDrawer');
+  var drawerClose = document.getElementById('drawerClose');
+  var drawerBackdrop = document.getElementById('drawerBackdrop');
+  function openDrawer(){
+    document.body.classList.add('drawer-open');
+    if(regionDrawer) regionDrawer.setAttribute('aria-hidden', 'false');
+    if(regionOpen) regionOpen.setAttribute('aria-expanded', 'true');
+    if(drawerClose) drawerClose.focus();
+  }
+  function closeDrawer(){
+    if(!document.body.classList.contains('drawer-open')) return;
+    document.body.classList.remove('drawer-open');
+    if(regionDrawer) regionDrawer.setAttribute('aria-hidden', 'true');
+    if(regionOpen){
+      regionOpen.setAttribute('aria-expanded', 'false');
+      regionOpen.focus();
+    }
+  }
+  if(regionOpen) regionOpen.addEventListener('click', openDrawer);
+  if(drawerClose) drawerClose.addEventListener('click', closeDrawer);
+  if(drawerBackdrop) drawerBackdrop.addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeDrawer();
+  });
+
+  /* drawer city search - filters switch buttons, link chips and overseas links */
+  var citySearch = document.getElementById('citySearch');
+  var cityEmpty = document.getElementById('cityEmpty');
+  if(citySearch){
+    citySearch.addEventListener('input', function(){
+      var q = citySearch.value.trim();
+      var items = document.querySelectorAll('#regionDrawer .drawer-city, #regionDrawer .drawer-link-chip, #regionDrawer .drawer-link');
+      var anyVisible = false;
+      for(var i = 0; i < items.length; i++){
+        var hit = !q || items[i].textContent.indexOf(q) > -1;
+        items[i].style.display = hit ? '' : 'none';
+        if(hit) anyVisible = true;
+      }
+      var containers = document.querySelectorAll('#regionDrawer .drawer-grid, #regionDrawer .drawer-links');
+      for(var j = 0; j < containers.length; j++){
+        var kids = containers[j].children;
+        var allHidden = kids.length > 0;
+        for(var k = 0; k < kids.length; k++){
+          if(kids[k].style.display !== 'none'){ allHidden = false; break; }
+        }
+        containers[j].style.display = allHidden ? 'none' : '';
+        var prev = containers[j].previousElementSibling;
+        if(prev && prev.classList.contains('drawer-subgroup')){
+          prev.style.display = allHidden ? 'none' : '';
+        }
+      }
+      var sections = document.querySelectorAll('#regionDrawer .drawer-section');
+      for(var s = 0; s < sections.length; s++){
+        var sItems = sections[s].querySelectorAll('.drawer-city, .drawer-link-chip, .drawer-link');
+        var sAny = false;
+        for(var t = 0; t < sItems.length; t++){
+          if(sItems[t].style.display !== 'none'){ sAny = true; break; }
+        }
+        sections[s].style.display = sAny ? '' : 'none';
+      }
+      if(cityEmpty) cityEmpty.style.display = anyVisible ? 'none' : 'block';
+    });
+  }
+
+  /* guestbook - in-memory only for this visit */
+  var gbForm = document.getElementById('gbForm');
+  var gbName = document.getElementById('gbName');
+  var gbText = document.getElementById('gbText');
+  var gbError = document.getElementById('gbError');
+  var gbList = document.getElementById('gbList');
+  var gbEmpty = document.getElementById('gbEmpty');
+  var gbTotal = document.getElementById('gbTotal');
+  var gbCount = document.getElementById('gbCount');
+  var gbMeterFill = document.getElementById('gbMeterFill');
+  var gbCopy = document.getElementById('gbCopy');
+  var gbCopyNote = document.getElementById('gbCopyNote');
+  var gbPosted = document.getElementById('gbPosted');
+  var gbSort = document.getElementById('gbSort');
+  var gbClear = document.getElementById('gbClear');
+  var gbMoodBtns = document.querySelectorAll('#gbMoods .gb-mood');
+  var gbMessages = [];
+  var gbNewestFirst = true;
+  var gbMood = "";
+  var gbPalette = ["#ffc94d","#ffb088","#a8d5a2","#a8cdea","#e3b8e0","#ffd1a8","#b5ddd1","#f5b8c4"];
+
+  function gbColorFor(name){
+    var s = 0;
+    for(var i = 0; i < name.length; i++) s += name.charCodeAt(i) * (i + 1);
+    return gbPalette[s % gbPalette.length];
+  }
+  function gbCopyText(str, done, fail){
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(str).then(done, fail);
+    } else {
+      var ta = document.createElement('textarea');
+      ta.value = str;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy') ? done() : fail(); } catch(err){ fail(); }
+      ta.remove();
+    }
+  }
+  function gbUpdateMeter(){
+    var len = gbText ? gbText.value.length : 0;
+    if(gbCount) gbCount.textContent = len + " / 200";
+    var hot = len >= 180;
+    if(gbCount) gbCount.classList.toggle('hot', hot);
+    if(gbMeterFill){
+      gbMeterFill.style.width = Math.min(100, len / 2) + "%";
+      gbMeterFill.classList.toggle('hot', hot);
+    }
+  }
+  function gbRenderCount(){
+    if(gbTotal) gbTotal.textContent = gbMessages.length + " 条留言";
+    if(gbEmpty) gbEmpty.style.display = gbMessages.length ? "none" : "block";
+  }
+  function gbBuildItem(item, isNew){
+    var el = document.createElement('article');
+    el.className = 'gb-item' + (isNew ? ' gb-new' : '');
+    var av = document.createElement('span');
+    av.className = 'gb-avatar';
+    av.style.background = gbColorFor(item.name);
+    av.textContent = item.name.charAt(0) || "猫";
+    av.setAttribute('aria-hidden', 'true');
+    var main = document.createElement('div');
+    main.className = 'gb-main';
+    var head = document.createElement('div');
+    head.className = 'gb-item-head';
+    var nEl = document.createElement('span');
+    nEl.className = 'gb-name';
+    nEl.textContent = item.name;
+    head.appendChild(nEl);
+    if(item.mood){
+      var mEl = document.createElement('span');
+      mEl.className = 'gb-mood-tag';
+      mEl.textContent = item.mood;
+      head.appendChild(mEl);
+    }
+    var tEl = document.createElement('span');
+    tEl.className = 'gb-time';
+    tEl.textContent = item.time;
+    head.appendChild(tEl);
+    var pEl = document.createElement('p');
+    pEl.className = 'gb-text';
+    pEl.textContent = item.text;
+    var acts = document.createElement('div');
+    acts.className = 'gb-item-actions';
+    var like = document.createElement('button');
+    like.type = 'button';
+    like.className = 'gb-act' + (item.liked ? ' liked' : '');
+    like.setAttribute('aria-pressed', item.liked ? 'true' : 'false');
+    like.setAttribute('aria-label', '给这条留言点赞');
+    function paintLike(){
+      like.textContent = (item.liked ? '♥' : '♡') + (item.likes ? ' ' + item.likes : '');
+      like.classList.toggle('liked', !!item.liked);
+      like.setAttribute('aria-pressed', item.liked ? 'true' : 'false');
+    }
+    paintLike();
+    like.addEventListener('click', function(){
+      item.liked = !item.liked;
+      item.likes = Math.max(0, (item.likes || 0) + (item.liked ? 1 : -1));
+      paintLike();
+    });
+    var cp = document.createElement('button');
+    cp.type = 'button';
+    cp.className = 'gb-act';
+    cp.textContent = '复制';
+    cp.addEventListener('click', function(){
+      gbCopyText(item.name + "（" + item.time + "）：\n" + item.text,
+        function(){ if(gbCopyNote) gbCopyNote.textContent = "这条复制好了。"; },
+        function(){ if(gbCopyNote) gbCopyNote.textContent = "复制没成功，可以手动选中这条复制。"; });
+    });
+    var del = document.createElement('button');
+    del.type = 'button';
+    del.className = 'gb-act';
+    del.textContent = '删掉';
+    var delTimer = null;
+    del.addEventListener('click', function(){
+      if(del.classList.contains('confirm')){
+        clearTimeout(delTimer);
+        var i = gbMessages.indexOf(item);
+        if(i > -1) gbMessages.splice(i, 1);
+        gbRenderList(null);
+      } else {
+        del.classList.add('confirm');
+        del.textContent = '确定删掉？';
+        delTimer = setTimeout(function(){
+          del.classList.remove('confirm');
+          del.textContent = '删掉';
+        }, 3000);
+      }
+    });
+    acts.appendChild(like);
+    acts.appendChild(cp);
+    acts.appendChild(del);
+    main.appendChild(head);
+    main.appendChild(pEl);
+    main.appendChild(acts);
+    el.appendChild(av);
+    el.appendChild(main);
+    return el;
+  }
+  function gbRenderList(newItem){
+    if(!gbList) return;
+    var old = gbList.querySelectorAll('.gb-item');
+    for(var i = old.length - 1; i >= 0; i--) old[i].remove();
+    var ordered = gbNewestFirst ? gbMessages : gbMessages.slice().reverse();
+    for(var j = 0; j < ordered.length; j++){
+      gbList.appendChild(gbBuildItem(ordered[j], ordered[j] === newItem));
+    }
+    if(gbEmpty) gbList.appendChild(gbEmpty);
+    gbRenderCount();
+  }
+  if(gbText){
+    gbText.addEventListener('input', function(){
+      gbUpdateMeter();
+      if(gbError) gbError.textContent = "";
+      if(gbPosted) gbPosted.textContent = "";
+    });
+    gbText.addEventListener('keydown', function(e){
+      if((e.ctrlKey || e.metaKey) && e.key === 'Enter'){
+        e.preventDefault();
+        if(gbForm) gbForm.requestSubmit ? gbForm.requestSubmit() : gbForm.dispatchEvent(new Event('submit', {cancelable:true}));
+      }
+    });
+  }
+  for(var m = 0; m < gbMoodBtns.length; m++){
+    gbMoodBtns[m].addEventListener('click', function(){
+      var val = this.getAttribute('data-mood');
+      var wasOn = this.getAttribute('aria-pressed') === 'true';
+      for(var k = 0; k < gbMoodBtns.length; k++) gbMoodBtns[k].setAttribute('aria-pressed', 'false');
+      gbMood = wasOn ? "" : val;
+      if(!wasOn) this.setAttribute('aria-pressed', 'true');
+    });
+  }
+  if(gbEmpty){
+    gbEmpty.addEventListener('click', function(){ if(gbText) gbText.focus(); });
+  }
+  function gbFormatTime(d){
+    return (d.getMonth()+1) + "月" + d.getDate() + "日 " + pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
+  }
+  if(gbForm){
+    gbForm.addEventListener('submit', function(e){
+      e.preventDefault();
+      var text = (gbText.value || "").trim();
+      if(!text){
+        if(gbError) gbError.textContent = "先写一句话再贴吧，空着没法贴。";
+        gbText.focus();
+        return;
+      }
+      if(gbError) gbError.textContent = "";
+      var name = (gbName.value || "").trim() || "路过的朋友";
+      var item = { name: name, text: text, mood: gbMood, time: gbFormatTime(new Date()), likes: 0, liked: false };
+      gbMessages.unshift(item);
+      if(!gbNewestFirst && gbSort){
+        gbNewestFirst = true;
+        gbSort.textContent = "⇅ 最新在前";
+        gbSort.setAttribute('aria-pressed', 'false');
+      }
+      gbRenderList(item);
+      gbText.value = "";
+      gbUpdateMeter();
+      gbMood = "";
+      for(var k = 0; k < gbMoodBtns.length; k++) gbMoodBtns[k].setAttribute('aria-pressed', 'false');
+      if(gbPosted) gbPosted.textContent = "贴好啦，就在下面 ↓";
+      if(gbCopyNote) gbCopyNote.textContent = "";
+    });
+  }
+  if(gbSort){
+    gbSort.addEventListener('click', function(){
+      gbNewestFirst = !gbNewestFirst;
+      gbSort.textContent = gbNewestFirst ? "⇅ 最新在前" : "⇅ 最早在前";
+      gbSort.setAttribute('aria-pressed', gbNewestFirst ? 'false' : 'true');
+      gbRenderList(null);
+    });
+  }
+  if(gbClear){
+    var clearTimer = null;
+    gbClear.addEventListener('click', function(){
+      if(!gbMessages.length){
+        if(gbCopyNote) gbCopyNote.textContent = "还没留言，不用清。";
+        return;
+      }
+      if(gbClear.getAttribute('aria-pressed') === 'true'){
+        clearTimeout(clearTimer);
+        gbMessages = [];
+        gbClear.setAttribute('aria-pressed', 'false');
+        gbClear.textContent = "清空全部";
+        gbRenderList(null);
+        if(gbCopyNote) gbCopyNote.textContent = "都清掉啦，板子干干净净。";
+      } else {
+        gbClear.setAttribute('aria-pressed', 'true');
+        gbClear.textContent = "确定清空？";
+        clearTimer = setTimeout(function(){
+          gbClear.setAttribute('aria-pressed', 'false');
+          gbClear.textContent = "清空全部";
+        }, 3000);
+      }
+    });
+  }
+  if(gbCopy){
+    gbCopy.addEventListener('click', function(){
+      if(!gbMessages.length){
+        if(gbCopyNote) gbCopyNote.textContent = "还没留言，没啥可复制的。";
+        return;
+      }
+      var ordered = gbNewestFirst ? gbMessages : gbMessages.slice().reverse();
+      var lines = ordered.map(function(mm){
+        return mm.name + (mm.mood ? " " + mm.mood : "") + "（" + mm.time + "）：\n" + mm.text;
+      }).join("\n\n");
+      gbCopyText(lines,
+        function(){ if(gbCopyNote) gbCopyNote.textContent = "复制好了，去别处粘贴就能留住。"; },
+        function(){ if(gbCopyNote) gbCopyNote.textContent = "复制没成功，你可以手动选中留言复制。"; });
+    });
+  }
+  gbUpdateMeter();
+  gbRenderList(null);
+})();
+</script>
+</body>
+</html>
